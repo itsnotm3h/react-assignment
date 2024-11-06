@@ -14,3 +14,22 @@ body{
   font-weight: 800;
   font-size: 3rem;
 }
+.productPhoto{
+   min-height: 400px;
+}
+.productInfo{
+  width: 100%;
+}
+.productName{
+  width: 70%;
+}
+
+.productCounter{
+  width: 30%;
+  border: 1px solid black;
+}
+
+.productPrice{
+  width:100%;
+}
+
