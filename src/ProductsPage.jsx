@@ -1,16 +1,12 @@
 import React from 'react';
 import ProductItem from './ProductItem';
+import Catergories from './Catergories';
 
 export default function ProductPage() {
     return (
 
         <div className="row h-100">
-            <div className="col-12 col-sm-2 border-end">
-                <div className="d-flex flex-wrap w-100 sticky-lg-top">
-                    <div className="col-12">Mens</div>
-                    <div className="col-12">Womens</div>
-                </div>
-            </div>
+            <Catergories />
             <div className="col-12 col-sm-10">
                 <section className="p-5">
                     <div className="sectionTitle bebas-Neue">Popular Dreams</div>
