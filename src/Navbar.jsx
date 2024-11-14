@@ -1,39 +1,86 @@
-import React from 'react';
-import { Link, useLocation } from 'wouter';
+import React , { useState, useEffect }from "react";
+import {Link, useLocation } from 'wouter';
 
 
 export default function Navbar() {
 
+    const [location] = useLocation();
+    // console.log(location);
 
+
+    // this is conditional rendering;
+    const isActiveLink = (url) =>{
+        if (location == url)
+        {
+            return "nav-link active";
+        }
+        else{
+            return "nav-link";
+
+        }
+    }
+
+    // its not sync iin mobile form
+    //somethiing happen outside of react us call side effect. 
+    // need to set up an effect
+
+    const clickButton = () => {
+        setNB(!isNBopen);
+    }
+
+
+    const [isNBopen, setNB] = useState(false);
+
+    //Create effect to detact broswer size. 
+    // 1. import use effect
+    // 2. when the componenet is in the dom it will use Effect. 
+
+    useEffect(() => {
+
+        const synNavbar = () => {
+            if (window.innerWidth > 992) {
+                setNB(true);
+            }
+            else {
+                setNB(false);
+
+            }
+        }
+
+        window.addEventListener("resize", () => {
+            console.log("Window resized")
+        })
+
+        return () => {
+            window.removeEventListener("resize", synNavbar);
+        }
+
+    }, []);
+        
     return (
         <div className="container-fluid postion-relative">
             <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <div class="container">
-                    <Link class="navbar-brand" href="#">E-Shop</Link >
+                <div className="container">
+                    <Link className="navbar-brand" href="#">E-Shop</Link >
                     <button
-                        class="navbar-toggler"
+                        className="navbar-toggler"
                         type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav"
-                        aria-controls="navbarNav"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
                     >
-                        <span class="navbar-toggler-icon"></span>
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item">
-                                <Link class="nav-link active" aria-current="page" href="/">Home</Link >
+                    <div className={`collapse navbar-collapse ${isNBopen ? "show" : ""}`} id="navbarNav">
+                        <ul className="navbar-nav ms-auto">
+                            <li className="nav-item">
+                                <Link className={`nav-link ${isActiveLink ? "active":"" }`} aria-current="page" href="/">Home</Link >
                             </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" href="/products">Products</Link >
+                            <li className="nav-item">
+                                <Link className={`nav-link ${isActiveLink ? "active":"" }`} href="/products">Products</Link >
                             </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" href="/register">Register</Link >
+                            <li className="nav-item">
+                                <Link className={`nav-link ${isActiveLink ? "active":"" }`} href="/register">Register</Link >
                             </li>
-                            <li class="nav-item">
-                                <Link class="nav-link" href="/cart">Cart</Link >
+                            <li className="nav-item">
+                                <Link className={`nav-link ${isActiveLink ? "active":"" }`} href="/cart">Cart</Link >
                             </li>
                         </ul>
                     </div>
