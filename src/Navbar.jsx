@@ -16,14 +16,12 @@ export default function Navbar() {
         }
         else{
             return "nav-link";
-
         }
     }
 
     // its not sync iin mobile form
     //somethiing happen outside of react us call side effect. 
     // need to set up an effect
-
     const clickButton = () => {
         setNB(!isNBopen);
     }
@@ -47,9 +45,8 @@ export default function Navbar() {
             }
         }
 
-        window.addEventListener("resize", () => {
-            console.log("Window resized")
-        })
+        window.addEventListener("resize", synNavbar);
+
 
         return () => {
             window.removeEventListener("resize", synNavbar);
@@ -58,29 +55,30 @@ export default function Navbar() {
     }, []);
         
     return (
-        <div className="container-fluid postion-relative">
+        <div className="container-fluid postion-relative p-0">
             <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <div className="container">
+                <div className="container ">
                     <Link className="navbar-brand" href="#">E-Shop</Link >
                     <button
                         className="navbar-toggler"
                         type="button"
+                        onClick={clickButton}
                     >
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className={`collapse navbar-collapse ${isNBopen ? "show" : ""}`} id="navbarNav">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
-                                <Link className={`nav-link ${isActiveLink ? "active":"" }`} aria-current="page" href="/">Home</Link >
+                                <Link className={`nav-link ${location == "/" ? "active" : "" }`} aria-current="page" href="/">Home</Link >
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link ${isActiveLink ? "active":"" }`} href="/products">Products</Link >
+                                <Link className={isActiveLink("/products")} href="/products">Products</Link >
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link ${isActiveLink ? "active":"" }`} href="/register">Register</Link >
+                                <Link className={isActiveLink("/register")}href="/register">Register</Link >
                             </li>
                             <li className="nav-item">
-                                <Link className={`nav-link ${isActiveLink ? "active":"" }`} href="/cart">Cart</Link >
+                                <Link className={isActiveLink("/cart")} href="/cart">Cart</Link >
                             </li>
                         </ul>
                     </div>
