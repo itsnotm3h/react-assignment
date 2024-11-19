@@ -3,13 +3,15 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useLocation } from 'wouter';
+import { useNotification } from "./showNotification";
+
 
 
 
 
 export default function RegisterPage() {
 
-    const [location,setLocation] = useLocation();
+    const [location, setLocation] = useLocation();
 
     const initialValues = {
         name: '',
@@ -20,7 +22,7 @@ export default function RegisterPage() {
         marketingPreferences: []
     };
 
-   
+
     const validationSchema = Yup.object({
         name: Yup.string().required('Name is missing.'),
         email: Yup.string().email("Invalid address").required("Email is required."),
@@ -33,11 +35,13 @@ export default function RegisterPage() {
         dob: Yup.date().required("Date is required").max(new Date(), "Date is invalid"),
     })
 
+    //declare the atom.
+    const { showNotification } = useNotification();
 
     const handleSubmit = async (values, formikHelpers) => {
         try {
             await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, values);
-            formikHelpers.setSubmitting(false); 
+            formikHelpers.setSubmitting(false);
         }
         catch (error) {
             console.error("Registration", error.response?.data || error.message);
@@ -46,6 +50,9 @@ export default function RegisterPage() {
             setLocation("/");
         }
     };
+
+
+
 
 
     return (
