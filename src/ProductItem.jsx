@@ -3,7 +3,6 @@ import React from "react";
 export default function productItem (props){
     return(
         <>
-             {/* <div className="col-12 col-sm-12 col-md-6 col-lg-4  mt-2 productItem"> */}
              <div className="col productItem mb-4">
 
                 <div className='productPhoto w-100 bg-dark-subtle'><img src={props.imgURL} className="img-fluid m-auto" alt={props.productName}/></div>
