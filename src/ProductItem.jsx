@@ -1,6 +1,20 @@
 import React from "react";
+import {useCart} from './CartStore';
+import {useLocation} from 'wouter';
+import {useNotification} from './useNotification';
 
 export default function productItem (props){
+
+    const {addToCart} = useCart();
+    const [,setLocation] = useLocation();
+    const {showNotification} = useNotification();
+
+    const handleAddToCart = ()=>{
+        addToCart(props);
+        showNotification("item added to cart!","success");
+        setLocation('/cart');
+    }
+
     return(
         <>
              <div className="col productItem mb-4">
@@ -10,6 +24,7 @@ export default function productItem (props){
                 <div className='productName text-start'>{props.productName} </div>
                 <div className='productCounter'></div>
                 <div className='productPrice'>{props.productPrice} </div>
+                <button className="btn btn-primary" onClick={handleAddToCart}>Add To Cart</button>
                 </div>
               </div>
 

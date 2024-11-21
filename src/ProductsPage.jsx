@@ -15,7 +15,6 @@ export default function ProductPage() {
         const loadData = async () => {
             //load the json file from the public folder. All static asset will be relative to public
             // therefore there is no need to put in full directory to file. 
-
             const response = await axios.get("products.json");
             setProducts(response.data);
         }
@@ -33,16 +32,15 @@ export default function ProductPage() {
                 <section className="p-5">
                     <div className="sectionTitle bebas-Neue">Popular Dreams</div>
                     <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
-
-
-                        {products.map(p =>
+                        {products.map(product =>
                             <div className="col-12 col-md-4 col-lg-3">
+                                {/* naming convention needs to be the same as json otherwise it will not work */}
                                 <ProductItem
-                                    productName={p.name}
-                                    productPrice={p.price}
-                                    imgURL={p.image}
-                                    id={p.id}
-                                    description={p.description}
+                                    productName={product.name}
+                                    price={product.price}
+                                    imgURL={product.image}
+                                    id={product.id}
+                                    description={product.description}
                                 />
                             </div>
                         )}
