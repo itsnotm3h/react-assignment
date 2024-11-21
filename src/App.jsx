@@ -3,8 +3,10 @@ import Navbar from './Navbar';
 import HomePage from './HomePage';
 import ProductsPage from './ProductsPage';
 import RegisterPage from './RegisterPage';
-import { useNotification } from './showNotification';
+import ShoppingCart from './ShoppingCart';
 
+import { useNotification } from './useNotification';
+import { useCart } from './CartStore';
 
 import {Route, Switch} from 'wouter';
 
@@ -29,19 +31,20 @@ function App() {
 
 
 
-  },[useNotification])
+  },[notification])
   
   return (
     <>
     <Navbar />
-    {flashMessage.message && (
-      <div className={`alert alert-`}></div>
-    )
-    }
+    {notification.message && (
+      <div className={`alert alert-${notification.type} text-center flash-alert`} role="alert">${notification.message}</div>
+    )}
     <Switch>
     <Route path="/" component={HomePage}/>
     <Route path="/products" component={ProductsPage}/>
     <Route path="/register" component={RegisterPage}/>
+    <Route path="/cart" component={ShoppingCart}/>
+
 
     </Switch>
 

@@ -3,7 +3,7 @@ import { Formik, Field, Form } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useLocation } from 'wouter';
-import { useNotification } from "./showNotification";
+import { useNotification } from "./useNotification";
 
 
 
@@ -41,10 +41,15 @@ export default function RegisterPage() {
     const handleSubmit = async (values, formikHelpers) => {
         try {
             await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, values);
+            showNotification("Registered successfully", "success");
             formikHelpers.setSubmitting(false);
         }
         catch (error) {
             console.error("Registration", error.response?.data || error.message);
+
+            showNotification("Error while registering: " + error, "danger");
+
+
         }
         finally {
             setLocation("/");
