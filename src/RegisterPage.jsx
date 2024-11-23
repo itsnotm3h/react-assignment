@@ -37,7 +37,7 @@ export default function RegisterPage() {
 
     const handleSubmit = async (values, formikHelpers) => {
         try {
-            await axios.post(`${import.meta.env.VITE_API_URL}/api/register`, values);
+            await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`, values);
             showNotification("Registered successfully", "success");
             formikHelpers.setSubmitting(false);
         }
@@ -72,36 +72,36 @@ export default function RegisterPage() {
                         {(formik) => (
                             <Form className="row">
                                 <div className="mb-3 col-10">
-                                    <label for="exampleInputEmail1" className="form-label">Name</label>
+                                    <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
                                     <Field type="text" className="form-control" id="exampleInputEmail1" name="name" />
                                     {formik.errors.name && formik.touched.name ? <div id="nameHelp" className="form-text text-danger"><small>{formik.errors.name}</small></div> : null}
                                 </div>
                                 <div className="mb-3 col-2">
-                                    <label for="exampleInputEmail1" className="form-label">Birthday</label>
+                                    <label htmlFor="exampleInputEmail1" className="form-label">Birthday</label>
                                     <Field type="date" className="form-control" name="dob" />
                                     {formik.errors.dob && formik.touched.dob ? <div id="nameHelp" className="form-text text-danger"><small>{formik.errors.dob}</small></div> : null}
                                 </div>
                                 <div className="mb-3 col-12">
-                                    <label for="exampleFieldEmail1" className="form-label">Email</label>
+                                    <label htmlFor="exampleFieldEmail1" className="form-label">Email</label>
                                     <Field type="email" className="form-control" id="exampleFieldEmail1" name="email" />
                                     {formik.errors.email && formik.touched.email ? <div id="nameHelp" className="form-text text-danger"><small>{formik.errors.email}</small></div> : null}
                                 </div>
                                 <div className="mb-3 col-12 col-sm-6">
-                                    <label for="exampleFieldPassword1" className="form-label">Password</label>
-                                    <Field type="password" className="form-control" id="exampleFieldPassword1" name="password" />
+                                    <label htmlFor="exampleFieldPassword1" className="form-label">Password</label>
+                                    <Field type="password" className="form-control" name="password" />
                                     {formik.errors.password && formik.touched.password ? <div id="passwordHelp" className="form-text text-danger"><small>{formik.errors.password}</small></div> : null}
                                 </div>
                                 <div className="mb-3  col-12 col-sm-6">
-                                    <label for="exampleFieldPassword1" className="form-label">Confirm Password</label>
-                                    <Field type="password" className="form-control" id="exampleFieldPassword1" name="confirmPassword" />
+                                    <label htmlFor="exampleFieldPassword1" className="form-label">Confirm Password</label>
+                                    <Field type="password" className="form-control" name="confirmPassword" />
                                     {formik.errors.confirmPassword && formik.touched.confirmPassword ? <div id="passwordHelp" className="form-text text-danger"><small>{formik.errors.confirmPassword}</small></div> : null}
 
                                 </div>
                                 <div className="mb-3 form-check">
-                                    <Field type="checkbox" className="form-check-Field" id="exampleCheck1" name="marketingPreferences" value="emailer" />
-                                    <label className="form-check-label" for="exampleCheck1">Emailer</label>
-                                    <Field type="checkbox" className="form-check-Field" id="exampleCheck1" name="marketingPreferences" value="whatsapp" />
-                                    <label className="form-check-label" for="exampleCheck1">Whatsapp</label>
+                                    <Field type="checkbox" className="form-check-Field" name="marketingPreferences" value="emailer" />
+                                    <label className="form-check-label" htmlFor="exampleCheck1">Emailer</label>
+                                    <Field type="checkbox" className="form-check-Field" name="marketingPreferences" value="whatsapp" />
+                                    <label className="form-check-label" htmlFor="exampleCheck1">Whatsapp</label>
                                 </div>
 
                                 <button type="submit" className="btn btn-primary" disabled={formik.isSubmitting}>Submit</button>
