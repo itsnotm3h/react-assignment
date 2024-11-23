@@ -6,9 +6,6 @@ import { useLocation } from 'wouter';
 import { useNotification } from "./useNotification";
 
 
-
-
-
 export default function RegisterPage() {
 
     const [location, setLocation] = useLocation();
