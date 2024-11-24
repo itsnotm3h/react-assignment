@@ -50,3 +50,11 @@ body{
   70% { opacity: 1; } /* Stay fully visible for the first 70% of time */
   100% { opacity: 0; }
 }
+
+.categoryBtn{
+  cursor: pointer;
+}
+.categoryBtn:hover{
+  font-weight: 500;
+  font-size: 1.5rem;
+}

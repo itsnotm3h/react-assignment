@@ -57,8 +57,8 @@ export default function RegisterPage() {
 
     return (
         <>
-            <div className="h-100 formField m-auto">
-                <div className="m-5">
+            <div className="h-100 formField m-auto container">
+                <div className="m-5 h-100">
                     <div className="mb-5"><h1>Registration</h1></div>
                     <Formik
                         initialValues={initialValues}

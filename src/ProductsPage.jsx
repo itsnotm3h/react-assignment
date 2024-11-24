@@ -25,20 +25,19 @@ export default function ProductPage() {
 
 
     return (
-
         <div className="row h-100">
             <Catergories />
             <div className="col-12 col-sm-10">
-                <section className="p-5">
-                    <div className="sectionTitle bebas-Neue">Popular Dreams</div>
-                    <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3">
+                <section className="pt-5 container">
+                    <div className="sectionTitle bebas-Neue">All Products</div>
+                    <div className="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 m-auto">
                         {products.map(product =>
                             <div className="col-12 col-md-4 col-lg-3">
                                 {/* naming convention needs to be the same as json otherwise it will not work */}
                                 <ProductItem
                                     productName={product.name}
                                     price={product.price}
-                                    imgURL={product.image}
+                                    imgURL={product.imageURL}
                                     id={product.id}
                                     description={product.description}
                                 />

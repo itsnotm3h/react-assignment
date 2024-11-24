@@ -56,8 +56,8 @@ export default function Navbar() {
         
     return (
         <div className="container-fluid postion-relative p-0">
-            <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-                <div className="container ">
+            <nav className="navbar navbar-expand-lg navbar-light border-bottom">
+                <div className="d-flex w-100 px-3 ">
                     <Link className="navbar-brand" href="#">E-Shop</Link >
                     <button
                         className="navbar-toggler"
