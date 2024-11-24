@@ -45,8 +45,6 @@ export default function RegisterPage() {
             console.error("Registration", error.response?.data || error.message);
 
             showNotification("Error while registering: " + error, "danger");
-
-
         }
         finally {
             setLocation("/");

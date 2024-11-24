@@ -77,6 +77,10 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <Link className={isActiveLink("/register")}href="/register">Register</Link >
                             </li>
+
+                            <li className="nav-item">
+                                <Link className={isActiveLink("/login")}href="/login">Login</Link >
+                            </li>
                             <li className="nav-item">
                                 <Link className={isActiveLink("/cart")} href="/cart">Cart</Link >
                             </li>

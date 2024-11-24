@@ -15,7 +15,7 @@ export default function ProductPage() {
         const loadData = async () => {
             //load the json file from the public folder. All static asset will be relative to public
             // therefore there is no need to put in full directory to file. 
-            const response = await axios.get("products.json");
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/products`);
             setProducts(response.data);
         }
 
