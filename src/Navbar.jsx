@@ -22,10 +22,7 @@ export default function Navbar() {
 // const isthereJWT = (item) => {
 //     return item !== "null" ? "Login" : "Logout";
 // };
-
-console.log(checkJWT);
     
-
 
 
 
