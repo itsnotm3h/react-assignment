@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductItem from './ProductItem';
 import Catergories from './Catergories';
-import { Product } from "./Product";
+import { Product } from "./LoadProduct";
 
 import axios from 'axios';
 

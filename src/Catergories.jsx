@@ -1,5 +1,5 @@
 import React ,{useEffect} from "react";
-import { Product } from "./Product";
+import { Product } from "./LoadProduct";
 
 
 export default function Catergories (){
