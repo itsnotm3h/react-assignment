@@ -30,8 +30,6 @@ function App() {
       clearTimeout(timer);
     }
 
-
-
   },[notification])
   
   return (

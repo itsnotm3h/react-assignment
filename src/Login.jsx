@@ -8,9 +8,10 @@ import {useJwt} from "./UserStore";
 
 
 export default function Login() {
-    const [location, setLocation] = useLocation();
 
+    const [location, setLocation] = useLocation();
     const { setJwt } = useJwt();
+
 
     const formEntry ={
         email:'',
@@ -33,7 +34,6 @@ export default function Login() {
         catch(error)
         {
             console.error("Login Failed", error.response?.data || error.message);
-
         }
         // finally{
         //     setLocation("/");

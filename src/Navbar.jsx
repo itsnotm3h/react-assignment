@@ -5,7 +5,28 @@ import {Link, useLocation } from 'wouter';
 export default function Navbar() {
 
     const [location] = useLocation();
-    // console.log(location);
+    const checkJWT = localStorage.getItem('jwt');
+
+     // this is conditional rendering;
+     const isthereJWT = (item) =>{
+        if (item == "null" || item== undefined || item == "")
+        {
+            return "Login";
+        }
+        else{
+            return "Logout";
+        }
+    }
+
+    // Conditional rendering function
+// const isthereJWT = (item) => {
+//     return item !== "null" ? "Login" : "Logout";
+// };
+
+console.log(checkJWT);
+    
+
+
 
 
     // this is conditional rendering;
@@ -41,7 +62,6 @@ export default function Navbar() {
             }
             else {
                 setNB(false);
-
             }
         }
 
@@ -56,8 +76,8 @@ export default function Navbar() {
         
     return (
         <div className="container-fluid postion-relative p-0">
-            <nav className="navbar navbar-expand-lg navbar-light border-bottom">
-                <div className="d-flex w-100 px-3 ">
+            <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <div className="container ">
                     <Link className="navbar-brand" href="#">E-Shop</Link >
                     <button
                         className="navbar-toggler"
@@ -77,12 +97,11 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <Link className={isActiveLink("/register")}href="/register">Register</Link >
                             </li>
-
-                            <li className="nav-item">
-                                <Link className={isActiveLink("/login")}href="/login">Login</Link >
-                            </li>
                             <li className="nav-item">
                                 <Link className={isActiveLink("/cart")} href="/cart">Cart</Link >
+                            </li>
+                            <li className="nav-item">
+                                <Link className={isActiveLink("/login")} href="/login">{isthereJWT(checkJWT)}</Link >
                             </li>
                         </ul>
                     </div>
