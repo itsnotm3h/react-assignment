@@ -1,10 +1,14 @@
 import{atom,useAtom} from 'jotai';
+import { useLocation } from 'wouter';
+
+
 
 const jwtAtom = atom(null);
 
 
 export function useJwt(){
 
+    const [location,setLocation] = useLocation();
     const [jwt,setJwtAtom] = useAtom(jwtAtom);
 
     //set the JWT in localStorage..Not very safe need to think about, how do we get set not in local storage. ( HttpOnly Cookies: set this up for industry project 2)
@@ -18,7 +22,6 @@ export function useJwt(){
         const storedJwt = localStorage.getItem('jwt');
         if(storedJwt && !jwt)
         {
-
             setJwtAtom(storedJwt);
         }
         return jwt || storedJwt;
@@ -29,7 +32,7 @@ export function useJwt(){
         setJwtAtom(null);
     }
 
-
     return {jwt,setJwt,getJwt,clearJwt};
 
 }
+

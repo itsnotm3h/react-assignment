@@ -9,6 +9,8 @@ import { useNotification } from "./useNotification";
 export default function RegisterPage() {
 
     const [location, setLocation] = useLocation();
+    
+
 
     const initialValues = {
         name: '',
@@ -38,7 +40,7 @@ export default function RegisterPage() {
     const handleSubmit = async (values, formikHelpers) => {
         try {
             await axios.post(`${import.meta.env.VITE_API_URL}/api/users/register`, values);
-            showNotification("Registered successfully", "success");
+            showNotification("Registered successfully", "success","");
             formikHelpers.setSubmitting(false);
         }
         catch (error) {

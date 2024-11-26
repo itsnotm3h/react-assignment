@@ -5,7 +5,8 @@ import {atom, useAtom} from 'jotai';
 // an atom to hold the stat.
 export const notificationAtom = atom ({
     message:'',
-    type:'info'
+    type:'info',
+    imageUrl:''
 });
 
 // this is the custom Hook that is being set up for the different functions.
@@ -13,13 +14,13 @@ export const useNotification = () => {
     const [notification, setNotification] = useAtom(notificationAtom);
 
     //this is to show the message
-    const showNotification = (message, type = 'info')=>{
-        setNotification({message,type});
+    const showNotification = (message, type = 'info', imageUrl)=>{
+        setNotification({message,type,imageUrl});
     };
 
     //this is to reset the message to blank.
     const clearNotification = () =>{
-        setNotification({message:'', type:'info'});
+        setNotification({message:'', type:'info', imageUrl:''});
     };
 
     // this is to return the message from the atom/.

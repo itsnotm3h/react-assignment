@@ -58,3 +58,15 @@ body{
   font-weight: 500;
   font-size: 1.5rem;
 }
+
+
+.cartImage{
+  width: 30%;
+  height: 150px;
+}
+.cartInfo{
+  width: 55%;
+}
+.cartPrice{
+  width: 15%;
+}

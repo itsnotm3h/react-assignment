@@ -1,38 +1,90 @@
-import React , { useState, useEffect }from "react";
-import {Link, useLocation } from 'wouter';
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from 'wouter';
+import { useJwt } from "./UserStore";
+import { useCart } from "./CartStore";
+import {useNotification} from './useNotification';
+import { Product } from "./LoadProduct";
+
+import axios from 'axios';
+
 
 
 export default function Navbar() {
 
-    const [location] = useLocation();
-    const checkJWT = localStorage.getItem('jwt');
+    const {setTag} = Product();
+    const { setJwt, getJwt } = useJwt();
+    const checkJWT = getJwt();
+    const { setCartData } = useCart();
 
-     // this is conditional rendering;
-     const isthereJWT = (item) =>{
-        if (item == "null" || item== undefined || item == "")
-        {
-            return "Login";
+
+    const [location,setLocation] = useLocation();
+    const {showNotification} = useNotification();
+
+    
+
+    // this is conditional rendering;
+    const isthereJWT = (item) => {
+        if (item == "null" || item == undefined || item == "") {
+            return false;
         }
-        else{
-            return "Logout";
+        else {
+            return true;
+        }
+    }
+
+    const logoutBtn = async () => {
+        try {
+
+            const thisJwt = getJwt();
+
+            console.log(thisJwt);
+
+            //error with the post command. 
+            // const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/logout`, "", {
+            //     headers: {
+            //         Authorization: `Bearer` + thisJwt
+            //     },
+            // });
+
+
+            const response = await axios.post(
+                `${import.meta.env.VITE_API_URL}/api/users/logout`,
+                {}, 
+                {
+                  headers: {
+                    Authorization: `Bearer ${thisJwt}`, 
+                  },
+                }
+              );
+
+
+            if (response.data) {
+                setJwt(null);
+                setCartData(null);
+
+                localStorage.removeItem('jwt');
+                showNotification("You have logged out!","success","");
+                setLocation("/");
+
+            }
+
+        }
+        catch (error) {
+            console.log("Error from navbar:" + error);
         }
     }
 
     // Conditional rendering function
-// const isthereJWT = (item) => {
-//     return item !== "null" ? "Login" : "Logout";
-// };
-    
-
-
+    // const isthereJWT = (item) => {
+    //     return item !== "null" ? "Login" : "Logout";
+    // };
 
     // this is conditional rendering;
-    const isActiveLink = (url) =>{
-        if (location == url)
-        {
+    const isActiveLink = (url) => {
+        if (location == url) {
             return "nav-link active";
         }
-        else{
+        else {
             return "nav-link";
         }
     }
@@ -70,8 +122,9 @@ export default function Navbar() {
         }
 
     }, []);
-        
+
     return (
+        
         <div className="container-fluid postion-relative p-0">
             <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                 <div className="container ">
@@ -86,20 +139,31 @@ export default function Navbar() {
                     <div className={`collapse navbar-collapse ${isNBopen ? "show" : ""}`} id="navbarNav">
                         <ul className="navbar-nav ms-auto">
                             <li className="nav-item">
-                                <Link className={`nav-link ${location == "/" ? "active" : "" }`} aria-current="page" href="/">Home</Link >
+                                <Link className={`nav-link ${location == "/" ? "active" : ""}`} aria-current="page" href="/">Home</Link >
                             </li>
                             <li className="nav-item">
-                                <Link className={isActiveLink("/products")} href="/products">Products</Link >
-                            </li>
-                            <li className="nav-item">
-                                <Link className={isActiveLink("/register")}href="/register">Register</Link >
+                                <Link className={isActiveLink("/products")} href="/products" onClick={()=>{setTag("/")}}>Products</Link >
                             </li>
                             <li className="nav-item">
                                 <Link className={isActiveLink("/cart")} href="/cart">Cart</Link >
                             </li>
-                            <li className="nav-item">
-                                <Link className={isActiveLink("/login")} href="/login">{isthereJWT(checkJWT)}</Link >
-                            </li>
+
+                            {isthereJWT(checkJWT) ? (
+                                <>
+                                    <li className="nav-item">
+                                        <Link className={isActiveLink("/logout")} onClick={() => { logoutBtn() }}>Logout</Link >
+                                    </li>
+                                </>
+                            ) : (<>
+                                <li className="nav-item">
+                                    <Link className={isActiveLink("/register")} href="/register">Register</Link >
+                                </li>
+                                <li className="nav-item">
+                                    <Link className={isActiveLink("/login")} href="/login">Login</Link >
+                                </li>
+                            </>
+                            )
+                            }
                         </ul>
                     </div>
                 </div>

@@ -9,6 +9,8 @@ import axios from 'axios';
 export default function ProductPage() {
 
     const [products, setProducts] = useState([]);
+
+
     const {getTag} = Product();
     const currentTag = getTag();
 

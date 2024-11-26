@@ -9,9 +9,10 @@ export default function productItem (props){
     const [,setLocation] = useLocation();
     const {showNotification} = useNotification();
 
-    const handleAddToCart = ()=>{
+    const handleAddToCart = (item)=>{
+        console.log(item);
         addToCart(props);
-        showNotification("item added to cart!","success");
+        showNotification("item added to cart!","success",item);
         setLocation('/cart');
     }
 
@@ -29,7 +30,7 @@ export default function productItem (props){
                 {/* <div className='productCounter'></div> */}
                 <div className='productPrice text-end'>${props.price}</div>
                 </div>
-                <button className="btn btn-primary" onClick={handleAddToCart}>Add To Cart</button>
+                <button className="btn btn-primary" onClick={() => handleAddToCart(props.imgURL)}>Add To Cart</button>
                 </div>
               </div>
 

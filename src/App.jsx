@@ -18,6 +18,7 @@ function App() {
   const {getNotification, clearNotification} = useNotification();
   const notification = getNotification();
 
+
   // setting timer for the notification. 
   useEffect(()=>{
 
@@ -36,7 +37,8 @@ function App() {
     <>
     <Navbar />
     {notification.message && (
-      <div className={`alert alert-${notification.type} text-center flash-alert`} role="alert">${notification.message}</div>
+      <div className={`alert alert-${notification.type} text-center flash-alert container`} role="alert"><div className='d-flex w-100 justify-content-center'>{notification.imageUrl && <div style={{ backgroundImage: `url(${notification.imageUrl}`,backgroundSize: 'cover',backgroundPosition:'center' , width:'80px',height:'80px'}}></div>}
+      <div className='ps-2 align-self-center'>{notification.message}</div></div></div>
     )}
     <Switch>
     <Route path="/" component={HomePage}/>
