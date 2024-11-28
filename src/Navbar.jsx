@@ -4,6 +4,7 @@ import { useJwt } from "./UserStore";
 import { useCart } from "./CartStore";
 import {useNotification} from './useNotification';
 import { Product } from "./LoadProduct";
+// import { LoginName } from "./LoginName";
 
 import axios from 'axios';
 
@@ -15,6 +16,7 @@ export default function Navbar() {
     const { setJwt, getJwt } = useJwt();
     const checkJWT = getJwt();
     const { setCartData } = useCart();
+    // const {getName} = LoginName();
 
 
     const [location,setLocation] = useLocation();

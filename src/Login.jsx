@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useLocation } from 'wouter';
 import {useJwt} from "./UserStore";
+// import { LoginName } from "./loginName";
 
 
 
@@ -11,6 +12,7 @@ export default function Login() {
 
     const [location, setLocation] = useLocation();
     const { setJwt } = useJwt();
+    // const {setName} = LoginName();
 
 
     const formEntry ={
@@ -28,6 +30,8 @@ export default function Login() {
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/login`, values);
             console.log('Login successful:', response.data);
             setJwt(response.data.token);
+            // setName(response.data.name);
+            // console.log(response.data.name)
             actions.setSubmitting(false);
             setLocation("/");
         }

@@ -70,3 +70,24 @@ body{
 .cartPrice{
   width: 15%;
 }
+
+.mainIMG{
+  background-image: url('./images/main.png');
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.sub1{
+  background-image: url('./images/sub1.png');
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+
+}
+
+.sub2{
+  background-image: url('./images/sub2.png');
+  background-position: center;
+  background-size: cover;
+}
